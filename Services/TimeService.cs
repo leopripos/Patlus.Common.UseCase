@@ -6,7 +6,7 @@ namespace Patlus.Common.UseCase.Services
     {
         public DateTime Now
         {
-            get { return DateTime.UtcNow; }
+            get { return DateTime.Now; }
         }
     }
 }
