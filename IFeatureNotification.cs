@@ -5,6 +5,6 @@ namespace Patlus.Common.UseCase
 {
     public interface IFeatureNotification : INotification
     {
-        DateTime Time { get; }
+        DateTimeOffset Time { get; }
     }
 }

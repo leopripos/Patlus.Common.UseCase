@@ -4,9 +4,14 @@ namespace Patlus.Common.UseCase.Services
 {
     public class TimeService : ITimeService
     {
-        public DateTime Now
+        public DateTimeOffset Now
         {
-            get { return DateTime.Now; }
+            get { return DateTimeOffset.UtcNow; }
+        }
+
+        public DateTime NowDateTime
+        {
+            get { return DateTime.UtcNow; }
         }
     }
 }

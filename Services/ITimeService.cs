@@ -4,6 +4,7 @@ namespace Patlus.Common.UseCase.Services
 {
     public interface ITimeService
     {
-        DateTime Now { get; }
+        DateTimeOffset Now { get; }
+        DateTime NowDateTime { get; }
     }
 }
