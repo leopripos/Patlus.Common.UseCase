@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,6 +26,14 @@ namespace Patlus.Common.UseCase.Queries.GetAll
             if (!(request.Condition is null))
             {
                 query = query.Where(request.Condition);
+            }
+
+            if (request.Includes != null && request.Includes.Length > 0)
+            {
+                foreach (var path in request.Includes)
+                {
+                    query = query.Include(path);
+                }
             }
 
             return Task.FromResult(query.ToArray());

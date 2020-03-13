@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Patlus.Common.UseCase.Queries.GetOne
 {
@@ -24,6 +25,14 @@ namespace Patlus.Common.UseCase.Queries.GetOne
             var query = Source;
 
             query = query.Where(request.Condition);
+
+            if (request.Includes != null && request.Includes.Length > 0)
+            {
+                    foreach (var path in request.Includes)
+                {
+                    query = query.Include(path);
+                }
+            }
 
             return Task.FromResult(query.FirstOrDefault());
         }
