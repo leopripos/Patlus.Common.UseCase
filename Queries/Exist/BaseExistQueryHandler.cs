@@ -24,9 +24,10 @@ namespace Patlus.Common.UseCase.Queries.Exist
 
             var query = Source.Where(request.Condition);
 
-            if (request.Includes != null && request.Includes.Length > 0)
+            var includes = request.GetInclude();
+            if (includes != null && includes.Length > 0)
             {
-                foreach (var path in request.Includes)
+                foreach (var path in includes)
                 {
                     query = query.Include(path);
                 }

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Patlus.Common.UseCase.Queries.GetOne
 {
@@ -26,9 +26,10 @@ namespace Patlus.Common.UseCase.Queries.GetOne
 
             query = query.Where(request.Condition);
 
-            if (request.Includes != null && request.Includes.Length > 0)
+            var includes = request.GetInclude();
+            if (includes != null && includes.Length > 0)
             {
-                    foreach (var path in request.Includes)
+                foreach (var path in includes)
                 {
                     query = query.Include(path);
                 }
