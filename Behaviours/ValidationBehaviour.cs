@@ -13,7 +13,7 @@ namespace Patlus.Common.UseCase.Behaviours
 
         public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
         {
-            this._validators = validators;
+            _validators = validators;
         }
 
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
