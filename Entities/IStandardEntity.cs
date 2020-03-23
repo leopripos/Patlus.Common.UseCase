@@ -2,9 +2,8 @@
 
 namespace Patlus.Common.UseCase.Entities
 {
-    public interface IStandardEntity
+    public interface IStandardEntity : IEntity
     {
-        Guid Id { get; set; }
         Guid CreatorId { get; set; }
         DateTimeOffset CreatedTime { get; set; }
         DateTimeOffset LastModifiedTime { get; set; }
