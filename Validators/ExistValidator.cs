@@ -1,8 +1,11 @@
 ﻿using FluentValidation.Resources;
 using FluentValidation.Validators;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Patlus.Common.UseCase.Validators
 {
@@ -35,6 +38,14 @@ namespace Patlus.Common.UseCase.Validators
             var expression = _predicateBuilder.Invoke(value);
 
             return _source.Where(expression).Count() > 0;
+        }
+
+        protected override async Task<bool> IsValidAsync(PropertyValidatorContext context, CancellationToken cancellation)
+        {
+            var value = (TProperty)context.PropertyValue;
+            var expression = _predicateBuilder.Invoke(value);
+
+            return await _source.Where(expression).CountAsync(cancellation) > 0;
         }
     }
 }

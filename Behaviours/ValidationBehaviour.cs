@@ -20,8 +20,8 @@ namespace Patlus.Common.UseCase.Behaviours
         {
             var context = new ValidationContext(request);
             var failures = _validators
-                .Select(v => v.Validate(context))
-                .SelectMany(result => result.Errors)
+                .Select(async (validator) => await validator.ValidateAsync(context, cancellationToken))
+                .SelectMany(result => result.Result.Errors)
                 .Where(f => f != null)
                 .ToList();
 

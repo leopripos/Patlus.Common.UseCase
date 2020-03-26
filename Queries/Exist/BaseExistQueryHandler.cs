@@ -17,7 +17,7 @@ namespace Patlus.Common.UseCase.Queries.Exist
             this.Source = source;
         }
 
-        public Task<bool> Handle(TQuery request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(TQuery request, CancellationToken cancellationToken)
         {
             if (request.Condition is null) throw new ArgumentNullException(nameof(request.Condition));
             if (request.RequestorId is null) throw new ArgumentNullException(nameof(request.RequestorId));
@@ -33,7 +33,7 @@ namespace Patlus.Common.UseCase.Queries.Exist
                 }
             }
 
-            return Task.FromResult(query.Count() > 0);
+            return await query.CountAsync(cancellationToken) > 0;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Patlus.Common.UseCase.Queries.GetAll
                 }
             }
 
-            return Task.FromResult(query.ToArray());
+            return query.ToArrayAsync(cancellationToken);
         }
     }
 }

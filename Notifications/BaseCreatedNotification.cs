@@ -4,7 +4,7 @@ using System;
 namespace Patlus.Common.UseCase.Notifications
 {
     public abstract class BaseCreatedNotification<TEntity> : IFeatureNotification
-        where TEntity: IEntity
+        where TEntity : IEntity
     {
         public TEntity Entity { get; }
         public Guid? By { get; }

@@ -35,7 +35,7 @@ namespace Patlus.Common.UseCase.Queries.GetOne
                 }
             }
 
-            return Task.FromResult(query.FirstOrDefault());
+            return query.FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

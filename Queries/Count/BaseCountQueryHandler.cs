@@ -37,7 +37,7 @@ namespace Patlus.Common.UseCase.Queries.Count
                 }
             }
 
-            return Task.FromResult(query.Count());
+            return query.CountAsync(cancellationToken);
         }
     }
 }
